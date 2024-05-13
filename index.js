@@ -6,7 +6,7 @@ function handleFormSubmit(event)
         pname:event.target.pname.value,
     
     }
-    axios.post('https://crudcrud.com/api/fa2062e1cc4d4e85b4692b3fec9632a3/product/', productData)
+    axios.post('https://crudcrud.com/api/0d7e460112574539858584a586659404/product/', productData)
     .then((result) => {displayUserOnScreen(result.data) 
         total();
      }).catch((err) => {
@@ -44,7 +44,7 @@ function displayUserOnScreen(productData)
     const dbtn=productItem.querySelector("#del")
     dbtn.addEventListener("click",function(){
     // debugger
-    axios.delete(`https://crudcrud.com/api/fa2062e1cc4d4e85b4692b3fec9632a3/product/${productData._id}`)
+    axios.delete(`https://crudcrud.com/api/0d7e460112574539858584a586659404/product/${productData._id}`)
     .then((res)=>{
         console.log(res)
     }).catch((err)=>{
@@ -66,15 +66,17 @@ function total(totalPriceOfProduct){
     
     }
 
+
     window.addEventListener("DOMContentLoaded",function(){
-        var reqURL="https://crudcrud.com/api/fa2062e1cc4d4e85b4692b3fec9632a3/product"
-        axios.get(${reqURL})
+        var reqURL=`https://crudcrud.com/api/0d7e460112574539858584a586659404/product`
+        axios.get(`${reqURL}`)
         .then((result) => {
             let totalPrice =0;
             for(let i=0;i<result.data.length;i++){
                 // console.log(result.data[i])
+    
                 displayUserOnScreen(result.data[i])
-                totalPrice+=result.data[i].price;
+                totalPrice+=Number(result.data[i].price);
                 total(totalPrice)
     
                
@@ -83,3 +85,4 @@ function total(totalPriceOfProduct){
         console.log(err)
       });
     })
+
